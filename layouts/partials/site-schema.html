@@ -1,4 +1,4 @@
-{{ if .IsHome -}}
+{{ if (.Params.home) -}}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -31,7 +31,7 @@
     "target": "http://example.com/search?&q={query}",
     "query-input": "required"
   } */}}
-{{- else if .IsPage -}}
+{{- else -}}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -41,12 +41,12 @@
     "@type": "WebPage",
     "@id": "{{ .Permalink }}"
   },
-  {{ if ge (.Param "lua.image.width") 696 -}}
+  {{ if ge (.Param "seo.image.width") 696 -}}
   "image": {
     "@type": "ImageObject",
-    "url": "{{ .Param "lua.image.url" | absURL }}",
-    "width": {{ .Param "lua.image.width" }},
-    "height": {{ .Param "lua.image.height" }}
+    "url": "{{ .Param "seo.image.url" | absURL }}",
+    "width": {{ .Param "seo.image.width" }},
+    "height": {{ .Param "seo.image.height" }}
   },
   {{- else if ge .Site.Params.image.width 696 -}}
    "image": {
@@ -56,7 +56,11 @@
     "height": {{ .Site.Params.image.height }}
   },
   {{- end }}
+  {{- if .Params.seo.genre -}}
+  "genre": "{{ .Params.seo.genre }}",
+  {{- else -}}
   "genre": "{{ .Type }}",
+  {{- end }}
   {{ with .Params.tags -}}
   "keywords": "{{ delimit . ", " }}",
   {{- end }}
