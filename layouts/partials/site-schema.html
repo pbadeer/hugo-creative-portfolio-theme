@@ -20,17 +20,11 @@
   "thumbnailUrl": "{{ .url | absURL }}",
   {{- end }}
   {{ with .Site.Params.Copyright -}}
-  "license": "{{ . }}",
+  "license": "{{ . | safeHTML }}",
   {{- end }}
   "name": "{{ .Site.Title }}"
 }
 </script>
-{{/*
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "http://example.com/search?&q={query}",
-    "query-input": "required"
-  } */}}
 {{- else -}}
 <script type="application/ld+json">
 {
@@ -74,8 +68,8 @@
   {{ with .Lastmod -}}
   "dateModified": "{{ .Format "2006-01-02T15:04:05-07:00" | safeHTML }}",
   {{- end }}
-  {{ with .Site.Copyright -}}
-  "license": "{{ . }}",
+  {{ with .Site.Params.Copyright -}}
+  "license": "{{ . | safeHTML }}",
   {{- end }}
   {{ with .Site.Params.publisher -}}
   "publisher": {
