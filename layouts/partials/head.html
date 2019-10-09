@@ -22,7 +22,7 @@
 {{ with .Site.Params.style }}
   <link href="{{ printf "css/style.%s.min.css" . | absURL }}" rel="stylesheet" id="theme-stylesheet">
 {{ else }}
-  <link href="{{ "css/style.default.css" | absURL }}" rel="stylesheet" id="theme-stylesheet">
+  <link href="{{ "css/style.default.min.css" | absURL }}" rel="stylesheet" id="theme-stylesheet">
 {{ end }}
 
 <!-- Responsivity for older IE -->
