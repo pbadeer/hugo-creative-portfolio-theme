@@ -11,11 +11,10 @@
 <meta name="googlebot" content="index,follow,snippet,archive">
 <link rel="shortcut icon" href="{{ "img/favicon.png" | absURL }}">
 
-<link rel="stylesheet" href="{{ "css/bootstrap.min.css" | absURL }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300,700,400italic"> -->
 <!-- <link rel="stylesheet" href="{{ "css/font-awesome.min.css" | absURL }}"> -->
-<!-- <link rel="stylesheet" href="{{ "css/owl.carousel.min.css" | absURL }}"> -->
-<!-- <link rel="stylesheet" href="{{ "css/owl.theme.min.css" | absURL }}"> -->
+
 
 
 <!-- Theme stylesheet, if possible do not edit this stylesheet -->
@@ -23,6 +22,11 @@
   <link href="{{ printf "css/style.%s.min.css" . | absURL }}" rel="stylesheet" id="theme-stylesheet">
 {{ else }}
   <link href="{{ "css/style.default.min.css" | absURL }}" rel="stylesheet" id="theme-stylesheet">
+{{ end }}
+
+<!-- Custom stylesheet - for your changes -->
+{{ with resources.Get "css/custom.css" | minify }}
+<style>{{ .Content | safeCSS }}</style>
 {{ end }}
 
 <!-- Responsivity for older IE -->
@@ -33,9 +37,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   ` | safeHTML }}
-
-<!-- Custom stylesheet - for your changes -->
-<link href="{{ "css/custom.css" | absURL }}" rel="stylesheet">
 
 {{ if .OutputFormats.Get "RSS" }}
   {{ with .OutputFormats.Get "RSS" }}
