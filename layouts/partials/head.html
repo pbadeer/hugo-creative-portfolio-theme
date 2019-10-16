@@ -1,6 +1,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+<title>
+  {{ if not .IsHome }}{{ .Title }}{{ end }}
+  {{ if eq .Params.appendsitename true }}
+  - {{ .Site.Title }}
+  {{ end }}
+</title>
 {{ if .Params.description }}
   {{ with .Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 {{ else }}
