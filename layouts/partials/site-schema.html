@@ -11,7 +11,7 @@
   },
   {{- end }}
   {{ with .Site.Params.description -}}
-  "description": "{{ . | safeHTML }}",
+  "description": {{ . }},
   {{- end }}
   {{ with .Site.Params.image -}}
   "image": "{{ .url | absURL }}",
@@ -20,7 +20,7 @@
   "thumbnailUrl": "{{ .url | absURL }}",
   {{- end }}
   {{ with .Site.Params.Copyright -}}
-  "license": {{ . | safeHTML }},
+  "license": {{ . }},
   {{- end }}
   "name": "{{ .Site.Title }}"
 }
@@ -69,7 +69,7 @@
   "dateModified": "{{ .Format "2006-01-02T15:04:05-07:00" | safeHTML }}",
   {{- end }}
   {{ with .Site.Params.Copyright -}}
-  "license": {{ . | safeHTML }},
+  "license": {{ . }},
   {{- end }}
   {{ with .Site.Params.publisher -}}
   "publisher": {
@@ -94,7 +94,7 @@
     "name": "{{ .Site.Author.name }}"
   },
   {{- end }}
-  "description": "{{ .Description | safeHTML }}"
+  "description": "{{ .Description }}"
 }
 </script>
 {{- end }}
