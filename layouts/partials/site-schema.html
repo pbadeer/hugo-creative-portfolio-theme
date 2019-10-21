@@ -94,7 +94,9 @@
     "name": "{{ .Site.Author.name }}"
   },
   {{- end }}
-  "description": "{{ .Description }}"
+  {{ with .Description -}}
+  "description": {{ . }},
+  {{- end }}
 }
 </script>
 {{- end }}
