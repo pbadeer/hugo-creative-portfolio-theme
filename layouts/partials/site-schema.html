@@ -10,8 +10,8 @@
     "name": "{{ .Site.Author.name }}"
   },
   {{- end }}
-  {{ if .Site.Params.description -}}
-  "description": "{{ .Site.Params.description }}",
+  {{ with .Site.Params.description -}}
+  "description": "{{ . | safeHTML }}",
   {{- end }}
   {{ with .Site.Params.image -}}
   "image": "{{ .url | absURL }}",
@@ -94,7 +94,7 @@
     "name": "{{ .Site.Author.name }}"
   },
   {{- end }}
-  "description": "{{ .Description }}"
+  "description": "{{ .Description | safeHTML }}"
 }
 </script>
 {{- end }}
